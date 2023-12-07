@@ -1,0 +1,26 @@
+{
+  /** 文件夹材质 */
+  "workbench.iconTheme": "material-icon-theme",
+  /* 自定义图标关联 */
+  "material-icon-theme.folders.associations": {
+    "mtcnn_rn": "src",
+    "weights": "admin",
+  },
+  /** python格式化 */
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  /** 不显示__pycache__文件夹 */
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true
+  },
+  /** python代码注释 */
+  "autoDocstring.docstringFormat": "numpy"
+}
