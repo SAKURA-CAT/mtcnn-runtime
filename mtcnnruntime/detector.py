@@ -65,7 +65,7 @@ class MTCNN(object):
         """
 
         # ---------------------------------- 建立图像金字塔 ----------------------------------
-        width, height = image.shape[:2]
+        height, width = image.shape[:2]
         min_length = min(height, width)
         # 金字塔的最小尺寸
         min_detection_size = 12
@@ -175,9 +175,9 @@ class MTCNN(object):
             形状为 [n_boxes, 9] 的浮点数 numpy 数组，包含得分和偏移的边界框（4 + 1 + 4）。
         """
         # 使用 OpenCV 将图像缩放
-        width, height = image.shape[:2]
+        height, width = image.shape[:2]
         sw, sh = math.ceil(width * scale), math.ceil(height * scale)
-        img = cv2.resize(image, (sh, sw), cv2.INTER_LINEAR)
+        img = cv2.resize(image, (sw, sh), cv2.INTER_LINEAR)
         img = np.asarray(img, "float32")
         img = _preprocess(img)
         output = self.__pnet[0].run([self.__pnet[2][0], self.__pnet[2][1]], {self.__pnet[1]: img})
@@ -385,7 +385,7 @@ def get_image_boxes(bounding_boxes: np.ndarray, img: np.ndarray, size: int = 24)
         形状为 [n, 3, size, size] 的浮点数 numpy 数组。
     """
     num_boxes = len(bounding_boxes)
-    width, height = img.shape[:2]
+    height, width = img.shape[:2]
 
     [dy, edy, dx, edx, y, ey, x, ex, w, h] = correct_bboxes(bounding_boxes, width, height)
     img_boxes = np.zeros((num_boxes, 3, size, size), "float32")
@@ -396,6 +396,7 @@ def get_image_boxes(bounding_boxes: np.ndarray, img: np.ndarray, size: int = 24)
         try:
             img_box[dy[i] : (edy[i] + 1), dx[i] : (edx[i] + 1), :] = img_array[y[i] : (ey[i] + 1), x[i] : (ex[i] + 1), :]
         except ValueError:
+            print("error")
             pass
         # 调整大小
         img_box = cv2.resize(img_box, (size, size), interpolation=cv2.INTER_AREA)
