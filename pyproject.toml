@@ -36,7 +36,7 @@ classifiers = [  # 项目分类
 ]
 
 [project.urls] # 项目链接
-Homepage = "https://github.com/SAKURA-CAT/kl-face-perceptron"
+Homepage = "https://github.com/SAKURA-CAT/mtcnn-runtime"
 
 [tool.hatch.metadata.hooks.requirements_txt] # 动态设置依赖
 filename = "requirements.txt"
@@ -57,4 +57,4 @@ include = [
 
 # black配置，与构建无关
 [tool.black]
-line-length = 120
+line-length = 150
