@@ -8,19 +8,46 @@ r"""
     测试文件, 在此处测试mtcnn的效果
 """
 import cv2
-from PIL import Image
-from mtcnn_rn import detect_faces
+from mtcnnruntime import MTCNN
+from PIL import Image, ImageDraw
 
 
-img = Image.open("test/imgs/3454d53f528b42dcab939a8f576da396.jpeg")
+def show_bboxes(img, bounding_boxes, facial_landmarks=[]):
+    """Draw bounding boxes and facial landmarks.
 
-faces_info = detect_faces(img)
-img = cv2.imread("test/imgs/3454d53f528b42dcab939a8f576da396.jpeg")
+    Arguments:
+        img: an instance of PIL.Image.
+        bounding_boxes: a float numpy array of shape [n, 5].
+        facial_landmarks: a float numpy array of shape [n, 10].
+
+    Returns:
+        an instance of PIL.Image.
+    """
+    line_width = 2
+    img_copy = img.copy()
+    if not isinstance(img_copy, Image.Image):
+        img_copy = Image.fromarray(img_copy)
+    draw = ImageDraw.Draw(img_copy)
+
+    for b in bounding_boxes:
+        draw.rectangle([(b[0], b[1]), (b[2], b[3])], outline="red", width=line_width)
+
+    for p in facial_landmarks:
+        for i in range(5):
+            draw.ellipse([(p[i] - 1.0, p[i + 5] - 1.0), (p[i] + 1.0, p[i + 5] + 1.0)], outline="green", width=line_width)
+
+    return img_copy
 
 
-def draw_box(img, boxes):
-    for box in boxes:
-        cv2.rectangle(img, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (0, 0, 255), 2)
+mtcnn = MTCNN()
+path = "imgs/Solvay_conference_1927_comp.jpg"
+img = cv2.imread(path, -1)
+boxes, landmarks = mtcnn.detect(img)
+# img = Image.open(path)
+# img = Image.fromarray(img)
+# boxes, landmarks = detect_faces(img)
+print(len(boxes), boxes, landmarks)
 
-
-draw_box(img, faces_info[0])
+# 画出人脸框
+img2 = show_bboxes(img, boxes, landmarks)
+print(landmarks)
