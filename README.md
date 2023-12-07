@@ -1,2 +1,3 @@
 # mtcnn-runtime
-mtcnn人脸检测模型的轻量化版本，基于onnxruntime
+基于mtcnn和onnxruntime的轻量级人脸检测库，开箱即用，非常方便。
+

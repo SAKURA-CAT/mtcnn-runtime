@@ -3,7 +3,7 @@
   "workbench.iconTheme": "material-icon-theme",
   /* 自定义图标关联 */
   "material-icon-theme.folders.associations": {
-    "mtcnn_rn": "src",
+    "mtcnnruntime": "src",
     "weights": "admin",
   },
   /** python格式化 */

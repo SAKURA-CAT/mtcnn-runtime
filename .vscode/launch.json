@@ -12,6 +12,15 @@
             "console": "integratedTerminal",
             "env": { "PYTHONPATH": "${workspaceFolder}" },
             "justMyCode": true
+        },
+        {
+            "name": "Python: 测试文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/test_mtcnn.py",
+            "console": "integratedTerminal",
+            "env": { "PYTHONPATH": "${workspaceFolder}" },
+            "justMyCode": true
         }
     ]
 }

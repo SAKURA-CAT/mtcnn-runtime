@@ -10,7 +10,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mtcnn-runtime" # 项目名称
-version = "0.0.1" # 项目版本
+version = "0.0.2" # 项目版本
 dynamic = [ "dependencies", "optional-dependencies", "readme"] # 动态配置版本，依赖，可选依赖，readme
 description = "Python library for streamlined tracking and management of AI training processes." # 项目描述
 license = "Apache-2.0" # 项目许可证
@@ -41,16 +41,16 @@ Homepage = "https://github.com/SAKURA-CAT/mtcnn-runtime"
 [tool.hatch.metadata.hooks.requirements_txt] # 动态设置依赖
 filename = "requirements.txt"
 
-[tool.hatch.metadata.hooks.requirements_txt.optional-dependencies]  # 动态设置可选依赖
-oauth = ["requirements-all.txt"]
-
 [tool.hatch.metadata.hooks.fancy-pypi-readme]  # 动态设置readme
 content-type = "text/markdown"
 fragments = [{ path = "README.md" }]
 
 [tool.hatch.build.targets.sdist]  # 在执行构建之前，将一些必要文件拷贝到虚拟环境中，以便构建，此时已经完成了vue的编译
 include = [
-  "/mtcnn_rn",
+  "/mtcnnruntime",
+  "/requirements.txt",
+  "/README.md",
+  "/imgs"
 ]
 
 
