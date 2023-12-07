@@ -1,3 +1,3 @@
-from .detector import detect_faces
+from .detector import detect_faces, MTCNN
 
-__all__ = ["detect_faces"]
+__all__ = ["detect_faces", "MTCNN"]

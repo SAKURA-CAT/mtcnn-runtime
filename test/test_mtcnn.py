@@ -9,18 +9,11 @@ r"""
 """
 import cv2
 from PIL import Image
-from mtcnn_rn import detect_faces
+from mtcnn_rn import detect_faces, MTCNN
+
+mtcnn = MTCNN()
 
 
-img = Image.open("test/imgs/3454d53f528b42dcab939a8f576da396.jpeg")
-
-faces_info = detect_faces(img)
-img = cv2.imread("test/imgs/3454d53f528b42dcab939a8f576da396.jpeg")
-
-
-def draw_box(img, boxes):
-    for box in boxes:
-        cv2.rectangle(img, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (0, 0, 255), 2)
-
-
-draw_box(img, faces_info[0])
+img1 = Image.open("test/imgs/Debra_Messing_0001.jpg")
+img2 = cv2.imread("test/imgs/Debra_Messing_0001.jpg")
+mtcnn.detect(image=img2)
