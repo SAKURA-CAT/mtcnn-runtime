@@ -10,7 +10,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mtcnn-runtime" # 项目名称
-version = "0.0.2" # 项目版本
+version = "0.0.4" # 项目版本
 dynamic = [ "dependencies", "optional-dependencies", "readme"] # 动态配置版本，依赖，可选依赖，readme
 description = "Python library for streamlined tracking and management of AI training processes." # 项目描述
 license = "Apache-2.0" # 项目许可证
@@ -37,6 +37,11 @@ classifiers = [  # 项目分类
 
 [project.urls] # 项目链接
 Homepage = "https://github.com/SAKURA-CAT/mtcnn-runtime"
+
+[tool.hatch.build]
+artifacts = [  # 将一些非python文件打包到项目中
+  "/mtcnnruntime/weights/*",
+]
 
 [tool.hatch.metadata.hooks.requirements_txt] # 动态设置依赖
 filename = "requirements.txt"
