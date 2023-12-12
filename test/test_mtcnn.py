@@ -22,4 +22,4 @@ print(len(boxes), boxes, landmarks)
 
 # 画出人脸框
 img2 = draw_faces(img, boxes, landmarks)
-print(landmarks)
+cv2.imwrite("imgs/Solvay_conference_1927_comp_mtcnn-result.jpg", img2)
