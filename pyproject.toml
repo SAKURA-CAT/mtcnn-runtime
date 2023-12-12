@@ -10,7 +10,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mtcnn-runtime" # 项目名称
-version = "0.0.5" # 项目版本
+version = "1.0.0" # 项目版本
 dynamic = [ "dependencies", "optional-dependencies", "readme"] # 动态配置版本，依赖，可选依赖，readme
 description = "Python library for streamlined tracking and management of AI training processes." # 项目描述
 license = "Apache-2.0" # 项目许可证
@@ -57,6 +57,9 @@ include = [
   "/README.md",
   "/imgs"
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["mtcnnruntime"]  # 指定项目包名
 
 
 
