@@ -62,8 +62,25 @@ class MTCNN(object):
         -------
         tuple(np.ndarray, np.ndarray)
             返回一个元组，第一个元素为边界框信息，第二个元素为关键点点信息
+
+            边界框信息为[n, 5]的浮点数 numpy 数组，包含 x1, y1, x2, y2, score 的坐标, (x1, y1)为左上角坐标，(x2, y2)为右下角坐标, score为置信度, 最大值为1
+
+            关键点信息为[n, 10]的浮点数 numpy 数组，包含 x1, x2, x3, x4, x5, y1, y2, y3, y4, y5 的坐标
+            (x1, y1)为左眼坐标，(x2, y2)为右眼坐标，(x3, y3)为鼻尖坐标，(x4, y4)为左嘴角坐标，(x5, y5)为右嘴角坐标
+
         """
 
+        # ---------------------------------- 预处理 ----------------------------------
+        # GRAY -> BGR
+        if len(image.shape) == 2:
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+
+        # BGRA -> BGR
+        if image.shape[2] == 4:
+            image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
+
+        # BGR -> RGB
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         # ---------------------------------- 建立图像金字塔 ----------------------------------
         height, width = image.shape[:2]
         min_length = min(height, width)
