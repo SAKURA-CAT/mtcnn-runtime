@@ -38,6 +38,11 @@ classifiers = [  # 项目分类
 [project.urls] # 项目链接
 Homepage = "https://github.com/SAKURA-CAT/mtcnn-runtime"
 
+[tool.hatch.build]
+artifacts = [  # 将一些非python文件打包到项目中
+  "/mtcnnruntime/weights/*",
+]
+
 [tool.hatch.metadata.hooks.requirements_txt] # 动态设置依赖
 filename = "requirements.txt"
 
